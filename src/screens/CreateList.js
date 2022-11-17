@@ -23,7 +23,7 @@ const CreateList = () => {
 
     return(
         <>
-            <ScrollView>
+            <ScrollView style={{backgroundColor: '#FFFFFF'}}>
                 <View style={styles.titleContainer}>
                     <Text style={styles.heading}>Title</Text>
                     <TextInput underlineColorAndroid='transparent' style={styles.inputTitle} placeholder={'Ex : Feeding an T-Rex'} />

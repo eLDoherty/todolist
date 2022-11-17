@@ -14,27 +14,38 @@ import { StatusBar } from 'react-native';
 import Home from './src/screens/Home';
 import History from './src/screens/History';
 import CreateList from './src/screens/CreateList';
+import { useState, createContext } from 'react';
+import { ModalMenuContext } from './src/contextAPI/ModalMenuContext';
 
 const Stack = createNativeStackNavigator();
 
+
+
+
 const App = () => {
+
+  const[showMenuModal, setMenuModal] = useState(false);
+
     return(
-      <NavigationContainer>
-        <StatusBar backgroundColor="#1F1F1F" barStyle="light-content"/> 
-        <Stack.Navigator 
-          screenOptions={{
-          headerShown: true,
-          headerTitleAlign: 'center',
-          headerTintColor: 'white',
-          headerStyle: {
-            backgroundColor: '#1F1F1F',
-         }
-          }}>
-          <Stack.Screen name="Home" component={Home} />
-          <Stack.Screen name="History" component={History} />
-          <Stack.Screen name="Create List" component={CreateList} />
-        </Stack.Navigator>
-      </NavigationContainer>
+      <ModalMenuContext.Provider value={[showMenuModal, setMenuModal]}>
+        <NavigationContainer>
+          <StatusBar backgroundColor="#1F1F1F" barStyle="light-content"/> 
+          <Stack.Navigator 
+            screenOptions={{
+            headerShown: false,
+            headerTitleAlign: 'center',
+            headerTintColor: '#df4b34',
+            headerStyle: {
+              backgroundColor: '#FFF',
+            },
+
+            }}>
+            <Stack.Screen name="Home" component={Home} />
+            <Stack.Screen name="History" component={History} />
+            <Stack.Screen name="Create List" component={CreateList} />
+          </Stack.Navigator>
+        </NavigationContainer>
+      </ModalMenuContext.Provider>
     )
 }
 
